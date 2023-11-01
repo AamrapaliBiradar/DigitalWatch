@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch</title>
+    <style>
+        #main{
+            border: 5px solid black;
+            border-radius: 5px;
+            height: 200px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            position: absolute;
+            margin-top: 10px;
+            background-image: linear-gradient(to right, rgb(206, 185, 157), rgb(198, 161, 113), rgb(207, 157, 92),rgb(196, 127, 38) );
+            padding: 100px 100px;
+        }
+        span{
+            font-size: 50px;
+            padding: 5px 5px;
+            letter-spacing: 11px;
+        }
+        .bd{
+            background-image: url('stopwatch.png');
+			background-size: cover;
+            opacity: 0.8;
+			/*	background-repeat: no-repeat;*/
+        }
+        p{
+            font-size: 40px;
+            
+        }
+
+    </style>
+</head>
+<body class="bd">
+
+    <div id="main"><h1 id="calldate"></h1>
+    <span id="hr" >12:42</span><span> : </span>
+    <span id="min"></span><span> : </span>
+    <span id="sec"></span>
+    <p>Hour : Minute : Second</p>
+    </div>
+    <script>
+        var hour = document.querySelector("#hr");
+        var minute =document.querySelector("#min");
+        var second =document.querySelector("#sec");
+
+        function updateTime(){
+            let tm = new Date();
+            let hr = tm.getHours();
+            let min = tm.getMinutes();
+            let sec = tm.getSeconds();
+    
+            hour.innerHTML=hr;
+            minute.innerHTML=min;
+            second.innerHTML=sec;
+
+            // console.log(hr);
+            // console.log(min);
+            // console.log(sec);
+            //console.log(tm);
+        }
+
+        function updateDate(){
+            let tm = new Date();
+            var am_pm = tm.toLocaleString("en-US",{
+                hour : "numeric",
+                minute : "numeric",
+                hour12 : true,
+            })
+            var abc=document.querySelector("#calldate");
+            abc.innerHTML=am_pm;
+        }
+        setInterval(updateTime,1000);
+        setInterval(updateDate,1000);
+        //updateDate();
+
+    </script>
+</body>
+</html>
